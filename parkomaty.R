@@ -50,7 +50,6 @@ colnames(strefa_a_dist) <- c(colnames(strefa_a), paste0("n_", colnames(strefa_a)
 g_dist <- gmapsdistance(origin = paste0(strefa_a_dist$lat,"+",strefa_a_dist$lon),
                         destination = paste0(strefa_a_dist$n_lat,"+",strefa_a_dist$n_lon), 
                         mode = "walking",
-                        key = "AIzaSyAcL0L_vq3_rlbn7_oYRoKcw5HRmuB-YqU",
                         combinations = "pairwise")
 
 g_dist$Status %>%
