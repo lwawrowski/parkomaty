@@ -49,7 +49,8 @@ colnames(strefa_a_dist) <- c(colnames(strefa_a), paste0("n_", colnames(strefa_a)
 
 g_dist <- gmapsdistance(origin = paste0(strefa_a_dist$lat,"+",strefa_a_dist$lon),
                         destination = paste0(strefa_a_dist$n_lat,"+",strefa_a_dist$n_lon), 
-                        mode = "walking", 
+                        mode = "walking",
+                        key = "AIzaSyAcL0L_vq3_rlbn7_oYRoKcw5HRmuB-YqU",
                         combinations = "pairwise")
 
 g_dist$Status %>%
@@ -59,6 +60,12 @@ g_dist$Status %>%
 strefa_a_dist <- strefa_a_dist %>%
   mutate(odl_google=g_dist$Distance$Distance,
          czas_google=g_dist$Time$Time)
+
+ggplot(strefa_a_dist, aes(odl_prosta, odl_google)) + 
+  geom_point() +
+  xlab("Odległość w linii prostej") + 
+  ylab("Odległość na podstawie Google Maps") +
+  theme_light()
 
 # który parkomat jest najbliższym sąsiadem dla największej liczby parkomatów
 
